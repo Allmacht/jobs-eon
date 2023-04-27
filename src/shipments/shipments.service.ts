@@ -8,7 +8,7 @@ export class ShipmentsService {
   @InjectRepository(Shipment) private shipmentRepository: Repository<Shipment>;
 
   async getAll(): Promise<Shipment[]> {
-    return await this.shipmentRepository.find();
+    return await this.shipmentRepository.find({ relations: { charge: true } });
   }
 
   // findOne(id: number): Shipment {

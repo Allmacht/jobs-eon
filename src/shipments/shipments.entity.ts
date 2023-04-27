@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Charge } from 'src/charge/charge.entity';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('shipments')
 export class Shipment {
@@ -6,7 +7,7 @@ export class Shipment {
   id: number;
 
   @Column()
-  uniqueOrderNumber: string;
+  unique_order_number: string;
 
   @Column()
   shipment_number: string;
@@ -37,4 +38,7 @@ export class Shipment {
 
   @Column({ type: 'timestamp' })
   updated_at: Date;
+
+  @OneToOne(() => Charge, (charge) => charge.shipment)
+  charge: Charge;
 }
